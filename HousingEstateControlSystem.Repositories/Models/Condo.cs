@@ -10,6 +10,7 @@ namespace HousingEstateControlSystem.Repositories.Models
         public string Type { get; set; }
         public int Floor { get; set; }
         public int Number { get; set; }
-        public bool Owner { get; set; } // false if it is rented
+        public int OwnerId { get; set; } // Foreign key for User
+        public bool IsTenant { get; set; } // True if rented out by a tenant, false if owned by the owner
     }
 }
