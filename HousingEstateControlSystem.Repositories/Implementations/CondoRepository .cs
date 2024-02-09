@@ -22,10 +22,11 @@ namespace HousingEstateControlSystem.Repositories.Implementations
             return _context.Condos.ToList();
         }
 
-        public void AddCondo(Condo condo)
+        public Condo AddCondo(Condo condo)
         {
             _context.Condos.Add(condo);
             _context.SaveChanges();
+            return condo;
         }
 
         public void UpdateCondo(Condo condo)

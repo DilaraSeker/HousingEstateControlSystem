@@ -6,7 +6,7 @@ namespace HousingEstateControlSystem.Repositories.Interfaces
     {
         Condo GetCondoById(int condoId);
         List<Condo> GetAllCondos();
-        void AddCondo(Condo condo);
+        Condo AddCondo(Condo condo);
         void UpdateCondo(Condo condo);
         void DeleteCondo(int condoId);
     }

@@ -22,10 +22,11 @@ namespace HousingEstateControlSystem.Repositories.Implementations
             return _context.Bills.ToList();
         }
 
-        public void AddBill(Bill bill)
+        public Bill AddBill(Bill bill)
         {
             _context.Bills.Add(bill);
             _context.SaveChanges();
+            return bill;
         }
 
         public void UpdateBill(Bill bill)

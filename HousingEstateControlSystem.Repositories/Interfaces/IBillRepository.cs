@@ -6,7 +6,7 @@ namespace HousingEstateControlSystem.Repositories.Interfaces
     {
         Bill GetBillById(int billId);
         List<Bill> GetAllBills();
-        void AddBill(Bill bill);
+        Bill AddBill(Bill bill);
         void UpdateBill(Bill bill);
         void DeleteBill(int billId);
     }

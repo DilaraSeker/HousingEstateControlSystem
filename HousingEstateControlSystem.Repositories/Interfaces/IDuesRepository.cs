@@ -6,7 +6,7 @@ namespace HousingEstateControlSystem.Repositories.Interfaces
     {
         Dues GetDuesById(int duesId);
         List<Dues> GetAllDues();
-        void AddDues(Dues dues);
+        Dues AddDues(Dues dues);
         void UpdateDues(Dues dues);
         void DeleteDues(int duesId);
     }

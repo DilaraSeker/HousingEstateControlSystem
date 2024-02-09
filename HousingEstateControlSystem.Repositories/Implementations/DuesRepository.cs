@@ -22,10 +22,11 @@ namespace HousingEstateControlSystem.Repositories.Implementations
             return _context.Dues.ToList();
         }
 
-        public void AddDues(Dues dues)
+        public Dues AddDues(Dues dues)
         {
             _context.Dues.Add(dues);
             _context.SaveChanges();
+            return dues;
         }
 
         public void UpdateDues(Dues dues)
