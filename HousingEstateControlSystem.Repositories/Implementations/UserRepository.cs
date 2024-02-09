@@ -11,10 +11,14 @@ namespace HousingEstateControlSystem.Repositories.Implementations
         {
             _context = context;
         }
-
         public User GetUserById(int userId)
         {
             return _context.Users.FirstOrDefault(u => u.UserId == userId);
+        }
+
+        public User GetUserByEmail(string email)
+        {
+            return _context.Users.FirstOrDefault(u => u.Email == email);
         }
 
         public List<User> GetAllUsers()
