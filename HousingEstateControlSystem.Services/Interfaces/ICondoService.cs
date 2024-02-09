@@ -5,10 +5,10 @@ namespace HousingEstateControlSystem.Services.Interfaces
 {
     public interface ICondoService
     {
-        ResponseDto<List<CondoDTO>> GetCondos();
-        ResponseDto<CondoDTO> GetCondo(int condoId);
-        ResponseDto<CondoDTO> CreateCondo(CondoDTO condoDto);
-        ResponseDto<CondoDTO> UpdateCondo(int condoId, CondoDTO condoDto);
-        ResponseDto<bool> DeleteCondo(int condoId);
+        ResponseDto<List<CondoDTO>> GetAllCondos();
+        ResponseDto<CondoDTO> GetCondoById(int condoId);
+        ResponseDto<int> AddCondo(CondoAddDtoRequest condo);
+        void UpdateCondo(CondoUpdateDtoRequest condo);
+        void DeleteCondo(int condoId);
     }
 }

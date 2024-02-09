@@ -5,10 +5,10 @@ namespace HousingEstateControlSystem.Services.Interfaces
 {
     public interface IDuesService
     {
-        ResponseDto<List<DuesDTO>> GetDues();
-        ResponseDto<DuesDTO> GetDues(int duesId);
-        ResponseDto<DuesDTO> CreateDues(DuesDTO duesDto);
-        ResponseDto<DuesDTO> UpdateDues(int duesId, DuesDTO duesDto);
-        ResponseDto<bool> DeleteDues(int duesId);
+        ResponseDto<List<DuesDTO>> GetAllDues();
+        ResponseDto<DuesDTO> GetDuesById(int duesId);
+        ResponseDto<int> AddDues(DuesAddDtoRequest dues);
+        void UpdateDues(DuesUpdateDtoRequest dues);
+        void DeleteDues(int duesId);
     }
 }
