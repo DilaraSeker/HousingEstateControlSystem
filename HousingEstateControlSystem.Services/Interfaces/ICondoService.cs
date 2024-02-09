@@ -1,5 +1,5 @@
 ﻿using HousingEstateControlSystem.Common;
-using HousingEstateControlSystem.DTOs;
+using HousingEstateControlSystem.DTOs.Condo;
 
 namespace HousingEstateControlSystem.Services.Interfaces
 {
