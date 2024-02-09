@@ -22,10 +22,11 @@ namespace HousingEstateControlSystem.Repositories.Implementations
             return _context.Users.ToList();
         }
 
-        public void AddUser(User user)
+        public User AddUser(User user)
         {
             _context.Users.Add(user);
             _context.SaveChanges();
+            return user;
         }
 
         public void UpdateUser(User user)
