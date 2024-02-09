@@ -1,9 +1,8 @@
 ﻿
-namespace HousingEstateControlSystem.DTOs
+namespace HousingEstateControlSystem.DTOs.Dues
 {
-    public class DuesDTO
+    public class DuesAddDtoRequest
     {
-        public int DuesId { get; set; }
         public int CondoId { get; set; }
         public decimal Amount { get; set; }
         public int Year { get; set; }

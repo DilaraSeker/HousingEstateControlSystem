@@ -1,5 +1,4 @@
-﻿
-namespace HousingEstateControlSystem.DTOs
+﻿namespace HousingEstateControlSystem.DTOs.User
 {
     public class UserDTO
     {
