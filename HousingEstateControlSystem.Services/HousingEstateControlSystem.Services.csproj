@@ -11,6 +11,8 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\HousingEstateControlSystem.Common\HousingEstateControlSystem.Common.csproj" />
+    <ProjectReference Include="..\HousingEstateControlSystem.DTOs\HousingEstateControlSystem.DTOs.csproj" />
     <ProjectReference Include="..\HousingEstateControlSystem.Repositories\HousingEstateControlSystem.Repositories.csproj" />
   </ItemGroup>
 
