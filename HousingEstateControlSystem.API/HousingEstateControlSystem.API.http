@@ -1,6 +1,6 @@
 @HousingEstateControlSystem.API_HostAddress = http://localhost:5189
 
-GET {{HousingEstateControlSystem.API_HostAddress}}/weatherforecast/
+GET http://localhost:5000/api/users
 Accept: application/json
 
 ###
