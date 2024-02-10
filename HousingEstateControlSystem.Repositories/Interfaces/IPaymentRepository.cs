@@ -1,6 +1,6 @@
 ﻿using HousingEstateControlSystem.Repositories.Models;
 
-namespace HousingEstateControlSystem.DataAccess.Repositories
+namespace HousingEstateControlSystem.Repositories
 {
     public interface IPaymentRepository
     {

@@ -2,7 +2,7 @@
 using HousingEstateControlSystem.Repositories;
 using Microsoft.EntityFrameworkCore;
 
-namespace HousingEstateControlSystem.DataAccess.Repositories
+namespace HousingEstateControlSystem.Repositories.Implementations
 {
     public class PaymentRepository : IPaymentRepository
     {
