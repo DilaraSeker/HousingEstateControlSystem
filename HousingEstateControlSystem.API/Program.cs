@@ -10,6 +10,10 @@ using HousingEstateControlSystem.Services;
 using HousingEstateControlSystem.API.Filters;
 using HousingEstateControlSystem.Repositories.Implementations;
 using HousingEstateControlSystem.Repositories.Interfaces;
+using System.Globalization;
+using HousingEstateControlSystem.Services.Mappers;
+using HousingEstateControlSystem.Repositories.Models;
+using Microsoft.AspNetCore.Identity;
 
 var builder = Host.CreateDefaultBuilder(args);
 
@@ -32,6 +36,7 @@ builder.ConfigureWebHostDefaults(webBuilder =>
         services.AddScoped<IUserService, UserService>();
         services.AddScoped<ICondoService, CondoService>();
         services.AddScoped<IBillService, BillService>();
+
         // Add controllers
         services.AddControllers(options =>
         {
@@ -43,6 +48,10 @@ builder.ConfigureWebHostDefaults(webBuilder =>
 
         // Add AutoMapper
         services.AddAutoMapper(typeof(Program));
+        services.AddAutoMapper(typeof(UserMapper));
+        services.AddAutoMapper(typeof(CondoMapper));
+        services.AddAutoMapper(typeof(DuesMapper));
+        services.AddAutoMapper(typeof(BillMapper));
     });
 
     webBuilder.Configure(app =>
