@@ -1,11 +1,11 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using HousingEstateControlSystem.Repositories.Models;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 
 namespace HousingEstateControlSystem.Repositories
 {
-    public class DatabaseContext : DbContext
+    public class DatabaseContext : IdentityDbContext<User>
     {
-        public DbSet<User> Users { get; set; }
         public DbSet<Condo> Condos { get; set; }
         public DbSet<Payment> Payments { get; set; }
         public DbSet<Dues> Dues { get; set; }
@@ -17,19 +17,12 @@ namespace HousingEstateControlSystem.Repositories
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            // User tablosu için anahtar tanımlaması
-            modelBuilder.Entity<User>().HasKey(u => u.UserId);
+            base.OnModelCreating(modelBuilder);
 
-            // Condo tablosu için anahtar tanımlaması
+            // Condo, Payment, Dues ve Bill tabloları için anahtar tanımlaması
             modelBuilder.Entity<Condo>().HasKey(c => c.CondoId);
-
-            // Payment tablosu için anahtar tanımlaması
             modelBuilder.Entity<Payment>().HasKey(p => p.PaymentId);
-
-            // Dues tablosu için anahtar tanımlaması
             modelBuilder.Entity<Dues>().HasKey(d => d.DuesId);
-
-            // Bill tablosu için anahtar tanımlaması
             modelBuilder.Entity<Bill>().HasKey(b => b.BillId);
 
             // User ve Condo arasındaki ilişkiyi tanımlama
