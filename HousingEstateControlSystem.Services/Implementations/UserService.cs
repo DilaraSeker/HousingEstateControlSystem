@@ -28,6 +28,7 @@ namespace HousingEstateControlSystem.Services
             }
             catch (Exception ex)
             {
+                // Hata oluştuğunda uygun bir hata mesajı ve 400 kodunu döndürün
                 return ResponseDto<List<UserDTO>>.Fail("Failed to get users.");
             }
         }
@@ -63,8 +64,10 @@ namespace HousingEstateControlSystem.Services
                 return ResponseDto<int>.Success(newUser.UserId);
             }
             catch (Exception ex)
-            {               
-                return ResponseDto<int>.Fail("Failed to add new user!");
+            {
+                // Handle inner exception if present
+                var errorMessage = ex.InnerException != null ? $"{ex.Message}. Inner Exception: {ex.InnerException.Message}" : ex.Message;
+                return ResponseDto<int>.Fail($"Failed to add new user! Error: {errorMessage}");
             }
         }
 
