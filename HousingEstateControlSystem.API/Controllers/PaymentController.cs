@@ -44,7 +44,7 @@ namespace HousingEstateControlSystem.API.Controllers
         }
 
         [HttpGet("user/{userId}")]
-        public IActionResult GetPaymentsByUserId(int userId)
+        public IActionResult GetPaymentsByUserId(string userId)
         {
             try
             {
@@ -58,7 +58,7 @@ namespace HousingEstateControlSystem.API.Controllers
         }
 
         [HttpGet("totalAmount/{userId}")]
-        public IActionResult GetTotalAmountPaidByUser(int userId)
+        public IActionResult GetTotalAmountPaidByUser(string userId)
         {
             try
             {
@@ -70,6 +70,7 @@ namespace HousingEstateControlSystem.API.Controllers
                 return StatusCode(500, $"An error occurred: {ex.Message}");
             }
         }
+
 
     }
 }
