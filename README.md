@@ -32,18 +32,21 @@ Bu projede, .NET 8 ve EF Core kullanılarak bir RESTful API geliştirilmiştir. 
     - IDuesService.cs
     - IBillService.cs
     - IPaymentService.cs
+    - IAuthService
   - **Implementations**
     - UserService.cs
     - CondoService.cs
     - DuesService.cs
     - BillService.cs
     - PaymentService.cs
+    - AuthService.cs
   - **Mappers**
     - UserMapper.cs
     - CondoMapper.cs
     - DuesMapper.cs
     - BillMapper.cs
     - PaymentMapper.cs
+    - AuthMapper.cs
 
 - **HousingEstateControlSystem.Repositories**
   - **Models**
@@ -94,6 +97,9 @@ Bu projede, .NET 8 ve EF Core kullanılarak bir RESTful API geliştirilmiştir. 
     - CondoUpdateRequest.cs
   - **Login**
     - LoginDTO.cs
+  - **Auth**
+    - AuthDTO.cs
+    - AuthResponseDTO.cs  
 
 
 ## Nasıl Çalıştırılır?
