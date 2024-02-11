@@ -5,7 +5,7 @@ using Microsoft.AspNetCore.Mvc;
 namespace HousingEstateControlSystem.API.Controllers
 {
     [ApiController]
-    [Route("api/payments")]
+    [Route("api/[controller]")]
     public class PaymentController : ControllerBase
     {
         private readonly IPaymentService _paymentService;
@@ -15,22 +15,17 @@ namespace HousingEstateControlSystem.API.Controllers
             _paymentService = paymentService;
         }
 
-        [HttpGet("{id}")]
-        public IActionResult GetPaymentById(int id)
+        [HttpPost]
+        public IActionResult AddPayment(PaymentAddDtoRequest paymentDto)
         {
             try
             {
-                var payment = _paymentService.GetPaymentById(id);
-                if (payment == null)
-                {
-                    return NotFound();
-                }
-
-                return Ok(payment);
+                _paymentService.AddPayment(paymentDto);
+                return Ok("Payment added successfully");
             }
             catch (Exception ex)
             {
-                return StatusCode(500, $"Internal server error: {ex.Message}");
+                return StatusCode(500, $"An error occurred: {ex.Message}");
             }
         }
 
@@ -39,55 +34,42 @@ namespace HousingEstateControlSystem.API.Controllers
         {
             try
             {
-                var payments = _paymentService.GetAllPayments();
+                IEnumerable<PaymentDTO> payments = _paymentService.GetAllPayments();
                 return Ok(payments);
             }
             catch (Exception ex)
             {
-                return StatusCode(500, $"Internal server error: {ex.Message}");
+                return StatusCode(500, $"An error occurred: {ex.Message}");
             }
         }
 
-        [HttpPost]
-        public IActionResult AddPayment([FromBody] PaymentAddDTORequest paymentAddDTO)
+        [HttpGet("user/{userId}")]
+        public IActionResult GetPaymentsByUserId(int userId)
         {
             try
             {
-                var addedPayment = _paymentService.AddPayment(paymentAddDTO);
-                return CreatedAtAction(nameof(GetPaymentById), new { id = addedPayment.PaymentId }, addedPayment);
+                IEnumerable<PaymentDTO> payments = _paymentService.GetPaymentsByUserId(userId);
+                return Ok(payments);
             }
             catch (Exception ex)
             {
-                return StatusCode(500, $"Internal server error: {ex.Message}");
+                return StatusCode(500, $"An error occurred: {ex.Message}");
             }
         }
 
-        [HttpPut("{id}")]
-        public IActionResult UpdatePayment(int id, [FromBody] PaymentUpdateDTORequest paymentUpdateDTO)
+        [HttpGet("totalAmount/{userId}")]
+        public IActionResult GetTotalAmountPaidByUser(int userId)
         {
             try
             {
-                _paymentService.UpdatePayment(paymentUpdateDTO);
-                return NoContent();
+                decimal totalAmount = _paymentService.GetTotalAmountPaidByUser(userId);
+                return Ok(totalAmount);
             }
             catch (Exception ex)
             {
-                return StatusCode(500, $"Internal server error: {ex.Message}");
+                return StatusCode(500, $"An error occurred: {ex.Message}");
             }
         }
 
-        [HttpDelete("{id}")]
-        public IActionResult DeletePayment(int id)
-        {
-            try
-            {
-                _paymentService.DeletePayment(id);
-                return NoContent();
-            }
-            catch (Exception ex)
-            {
-                return StatusCode(500, $"Internal server error: {ex.Message}");
-            }
-        }
     }
 }
