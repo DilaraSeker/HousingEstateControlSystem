@@ -1,57 +1,54 @@
-﻿using AutoMapper;
-using HousingEstateControlSystem.DTOs;
-using HousingEstateControlSystem.Repositories.Models;
+﻿using HousingEstateControlSystem.DTOs;
+using HousingEstateControlSystem.Repositories.Interfaces;
 using HousingEstateControlSystem.Services.Interfaces;
-using HousingEstateControlSystem.Repositories;
+using HousingEstateControlSystem.Services.Mappers;
+
 
 namespace HousingEstateControlSystem.Services.Implementations
 {
     public class PaymentService : IPaymentService
     {
         private readonly IPaymentRepository _paymentRepository;
-        private readonly IMapper _mapper;
+        private readonly PaymentMapper _paymentMapper;
 
-        public PaymentService(IPaymentRepository paymentRepository, IMapper mapper)
+        public PaymentService(IPaymentRepository paymentRepository, PaymentMapper paymentMapper)
         {
             _paymentRepository = paymentRepository;
-            _mapper = mapper;
+            _paymentMapper = paymentMapper;
         }
 
-        public PaymentDTO AddPayment(PaymentAddDTORequest paymentAddDTO)
+        public void AddPayment(PaymentAddDtoRequest paymentDto)
         {
-            var payment = _mapper.Map<Payment>(paymentAddDTO);
-            payment.PaymentDate = DateTime.UtcNow;
-            var addedPayment = _paymentRepository.AddPayment(payment);
-            return _mapper.Map<PaymentDTO>(addedPayment);
+            var payment = _paymentMapper.MapToPaymentEntity(paymentDto);
+            payment.PaymentDate = DateTime.Now; // Ödemenin yapıldığı tarihi ekler
+            _paymentRepository.AddPayment(payment);
         }
 
-        public void DeletePayment(int paymentId)
-        {
-            _paymentRepository.DeletePayment(paymentId);
-        }
-
-        public List<PaymentDTO> GetAllPayments()
+        public IEnumerable<PaymentDTO> GetAllPayments()
         {
             var payments = _paymentRepository.GetAllPayments();
-            return _mapper.Map<List<PaymentDTO>>(payments);
-        }
-
-        public PaymentDTO GetPaymentById(int paymentId)
-        {
-            var payment = _paymentRepository.GetPaymentById(paymentId);
-            return _mapper.Map<PaymentDTO>(payment);
-        }
-
-        public void UpdatePayment(PaymentUpdateDTORequest paymentUpdateDTO)
-        {
-            var existingPayment = _paymentRepository.GetPaymentById(paymentUpdateDTO.PaymentId);
-            if (existingPayment == null)
+            var paymentDTOs = new List<PaymentDTO>();
+            foreach (var payment in payments)
             {
-                throw new ApplicationException("Payment not found");
+                paymentDTOs.Add(_paymentMapper.MapToPaymentDTO(payment));
             }
+            return paymentDTOs;
+        }
 
-            _mapper.Map(paymentUpdateDTO, existingPayment);
-            _paymentRepository.UpdatePayment(existingPayment);
+        public IEnumerable<PaymentDTO> GetPaymentsByUserId(int userId)
+        {
+            var payments = _paymentRepository.GetPaymentsByUserId(userId);
+            var paymentDTOs = new List<PaymentDTO>();
+            foreach (var payment in payments)
+            {
+                paymentDTOs.Add(_paymentMapper.MapToPaymentDTO(payment));
+            }
+            return paymentDTOs;
+        }
+
+        public decimal GetTotalAmountPaidByUser(int userId)
+        {
+            return _paymentRepository.GetTotalAmountPaidByUser(userId);
         }
     }
 }

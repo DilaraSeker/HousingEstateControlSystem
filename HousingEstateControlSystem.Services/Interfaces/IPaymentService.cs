@@ -4,10 +4,9 @@ namespace HousingEstateControlSystem.Services.Interfaces
 {
     public interface IPaymentService
     {
-        PaymentDTO GetPaymentById(int paymentId);
-        List<PaymentDTO> GetAllPayments();
-        PaymentDTO AddPayment(PaymentAddDTORequest paymentAddDTO);
-        void UpdatePayment(PaymentUpdateDTORequest paymentUpdateDTO);
-        void DeletePayment(int paymentId);
+        void AddPayment(PaymentAddDtoRequest paymentDto);
+        IEnumerable<PaymentDTO> GetAllPayments();
+        IEnumerable<PaymentDTO> GetPaymentsByUserId(int userId);
+        decimal GetTotalAmountPaidByUser(int userId);
     }
 }

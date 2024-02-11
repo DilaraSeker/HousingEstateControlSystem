@@ -1,13 +1,16 @@
 ﻿using HousingEstateControlSystem.Repositories.Models;
 
-namespace HousingEstateControlSystem.Repositories
+
+namespace HousingEstateControlSystem.Repositories.Interfaces
 {
     public interface IPaymentRepository
     {
-        Payment GetPaymentById(int paymentId);
-        List<Payment> GetAllPayments();
-        Payment AddPayment(Payment payment);
-        void UpdatePayment(Payment payment);
-        void DeletePayment(int paymentId);
+        void AddPayment(Payment payment);
+        IEnumerable<Payment> GetAllPayments();
+        IEnumerable<Payment> GetPaymentsByUserId(int userId);
+        IEnumerable<Payment> GetPaymentsByDateRange(DateTime startDate, DateTime endDate);
+        IEnumerable<Payment> GetPaymentsByType(PaymentType paymentType);
+        decimal GetTotalAmountPaidByUser(int userId);
+  
     }
 }
