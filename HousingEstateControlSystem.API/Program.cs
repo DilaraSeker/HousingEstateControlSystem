@@ -9,6 +9,8 @@ using HousingEstateControlSystem.Repositories.Implementations;
 using HousingEstateControlSystem.Repositories.Interfaces;
 using System.Globalization;
 using HousingEstateControlSystem.Services.Mappers;
+using HousingEstateControlSystem.Repositories.Models;
+using Microsoft.AspNetCore.Identity;
 
 var builder = Host.CreateDefaultBuilder(args);
 
@@ -31,6 +33,12 @@ builder.ConfigureWebHostDefaults(webBuilder =>
         services.AddScoped<IUserService, UserService>();
         services.AddScoped<ICondoService, CondoService>();
         services.AddScoped<IBillService, BillService>();
+        services.AddIdentity<User, IdentityRole>()
+      .AddEntityFrameworkStores<DatabaseContext>()
+      .AddDefaultTokenProviders();
+
+
+
 
         // Add controllers
         services.AddControllers(options =>
@@ -47,6 +55,7 @@ builder.ConfigureWebHostDefaults(webBuilder =>
         services.AddAutoMapper(typeof(CondoMapper));
         services.AddAutoMapper(typeof(DuesMapper));
         services.AddAutoMapper(typeof(BillMapper));
+        services.AddAutoMapper(typeof(PaymentMapper));
     });
 
     webBuilder.Configure(app =>
