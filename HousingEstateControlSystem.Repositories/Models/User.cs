@@ -1,7 +1,8 @@
-﻿
+﻿using Microsoft.AspNetCore.Identity;
+
 namespace HousingEstateControlSystem.Repositories.Models
 {
-    public class User
+    public class User : IdentityUser
     {
         public int UserId { get; set; } = default!;
         public string FullName { get; set; } = default!;
@@ -11,7 +12,7 @@ namespace HousingEstateControlSystem.Repositories.Models
 
         // Condo property to User class
         public int? CondoId { get; set; } // Can be Nullable 
-        public Condo Condo { get; set; } // User may have a Condo
-        public ICollection<Payment> Payments { get; set; }
+        public Condo? Condo { get; set; } // User may have a Condo
+        public ICollection<Payment>? Payments { get; set; }
     }
 }
