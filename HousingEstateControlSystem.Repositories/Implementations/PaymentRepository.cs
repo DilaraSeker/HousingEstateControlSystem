@@ -23,7 +23,7 @@ namespace HousingEstateControlSystem.Repositories.Implementations
             return _context.Payments.ToList();
         }
 
-        public IEnumerable<Payment> GetPaymentsByUserId(int userId)
+        public IEnumerable<Payment> GetPaymentsByUserId(string userId)
         {
             return _context.Payments.Where(p => p.UserId == userId).ToList();
         }
@@ -38,9 +38,10 @@ namespace HousingEstateControlSystem.Repositories.Implementations
             return _context.Payments.Where(p => p.PaymentType == paymentType).ToList();
         }
 
-        public decimal GetTotalAmountPaidByUser(int userId)
+        public decimal GetTotalAmountPaidByUser(string userId)
         {
             return _context.Payments.Where(p => p.UserId == userId).Sum(p => p.Amount);
         }
+
     }
 }

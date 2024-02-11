@@ -6,7 +6,7 @@ namespace HousingEstateControlSystem.Services.Interfaces
     {
         void AddPayment(PaymentAddDtoRequest paymentDto);
         IEnumerable<PaymentDTO> GetAllPayments();
-        IEnumerable<PaymentDTO> GetPaymentsByUserId(int userId);
-        decimal GetTotalAmountPaidByUser(int userId);
+        IEnumerable<PaymentDTO> GetPaymentsByUserId(string userId);
+        decimal GetTotalAmountPaidByUser(string userId);
     }
 }

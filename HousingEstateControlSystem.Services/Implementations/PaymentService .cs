@@ -35,7 +35,7 @@ namespace HousingEstateControlSystem.Services.Implementations
             return paymentDTOs;
         }
 
-        public IEnumerable<PaymentDTO> GetPaymentsByUserId(int userId)
+        public IEnumerable<PaymentDTO> GetPaymentsByUserId(string userId)
         {
             var payments = _paymentRepository.GetPaymentsByUserId(userId);
             var paymentDTOs = new List<PaymentDTO>();
@@ -46,9 +46,11 @@ namespace HousingEstateControlSystem.Services.Implementations
             return paymentDTOs;
         }
 
-        public decimal GetTotalAmountPaidByUser(int userId)
+
+        public decimal GetTotalAmountPaidByUser(string userId)
         {
             return _paymentRepository.GetTotalAmountPaidByUser(userId);
         }
+
     }
 }

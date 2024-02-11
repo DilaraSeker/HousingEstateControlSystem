@@ -4,7 +4,7 @@ namespace HousingEstateControlSystem.Repositories.Models
     public class Payment
     {
         public int PaymentId { get; set; }
-        public int UserId { get; set; } // Ödemenin hangi kullanıcı tarafından yapıldığını belirtmek için kullanıcı ID'si
+        public string UserId { get; set; } // Ödemenin hangi kullanıcı tarafından yapıldığını belirtmek için kullanıcı ID'si
         public User User { get; set; } 
         public int DuesId { get; set; } // Ödemenin hangi aidat ID'sine ait olduğunu belirtmek için aidat ID'si
         public decimal Amount { get; set; } // Ödeme tutarı

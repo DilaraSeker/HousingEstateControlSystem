@@ -7,10 +7,10 @@ namespace HousingEstateControlSystem.Repositories.Interfaces
     {
         void AddPayment(Payment payment);
         IEnumerable<Payment> GetAllPayments();
-        IEnumerable<Payment> GetPaymentsByUserId(int userId);
+        IEnumerable<Payment> GetPaymentsByUserId(string userId);
         IEnumerable<Payment> GetPaymentsByDateRange(DateTime startDate, DateTime endDate);
         IEnumerable<Payment> GetPaymentsByType(PaymentType paymentType);
-        decimal GetTotalAmountPaidByUser(int userId);
+        decimal GetTotalAmountPaidByUser(string userId);
   
     }
 }
