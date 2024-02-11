@@ -1,6 +1,5 @@
-﻿using HousingEstateControlSystem.Repositories.Models;
-using HousingEstateControlSystem.Repositories;
-using Microsoft.EntityFrameworkCore;
+﻿using HousingEstateControlSystem.Repositories.Interfaces;
+using HousingEstateControlSystem.Repositories.Models;
 
 namespace HousingEstateControlSystem.Repositories.Implementations
 {
@@ -13,37 +12,35 @@ namespace HousingEstateControlSystem.Repositories.Implementations
             _context = context;
         }
 
-        public Payment GetPaymentById(int paymentId)
+        public void AddPayment(Payment payment)
         {
-            return _context.Payments.FirstOrDefault(p => p.PaymentId == paymentId);
+            _context.Payments.Add(payment);
+            _context.SaveChanges();
         }
 
-        public List<Payment> GetAllPayments()
+        public IEnumerable<Payment> GetAllPayments()
         {
             return _context.Payments.ToList();
         }
 
-        public Payment AddPayment(Payment payment)
+        public IEnumerable<Payment> GetPaymentsByUserId(int userId)
         {
-            _context.Payments.Add(payment);
-            _context.SaveChanges();
-            return payment;
+            return _context.Payments.Where(p => p.UserId == userId).ToList();
         }
 
-        public void UpdatePayment(Payment payment)
+        public IEnumerable<Payment> GetPaymentsByDateRange(DateTime startDate, DateTime endDate)
         {
-            _context.Entry(payment).State = EntityState.Modified;
-            _context.SaveChanges();
+            return _context.Payments.Where(p => p.PaymentDate >= startDate && p.PaymentDate <= endDate).ToList();
         }
 
-        public void DeletePayment(int paymentId)
+        public IEnumerable<Payment> GetPaymentsByType(PaymentType paymentType)
         {
-            var payment = _context.Payments.Find(paymentId);
-            if (payment != null)
-            {
-                _context.Payments.Remove(payment);
-                _context.SaveChanges();
-            }
+            return _context.Payments.Where(p => p.PaymentType == paymentType).ToList();
+        }
+
+        public decimal GetTotalAmountPaidByUser(int userId)
+        {
+            return _context.Payments.Where(p => p.UserId == userId).Sum(p => p.Amount);
         }
     }
 }
