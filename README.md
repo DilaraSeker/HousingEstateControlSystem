@@ -8,35 +8,92 @@ Bu projede, .NET 8 ve EF Core kullanılarak bir RESTful API geliştirilmiştir. 
 
 ## Dosya Yapısı
 
-HousingEstateControlSystem
-│
-├───HousingEstateControlSystem.API
-│ ├───Controllers
-│ ├───Filters
-│ ├───Middlewares
-│ ├───Program.cs
-│ └───appsettings.json
-│
-├───HousingEstateControlSystem.Services
-│ ├───Interfaces
-│ ├───Implementations
-│ └───Mappers
-│
-├───HousingEstateControlSystem.Repositories
-│ ├───Models
-│ ├───Interfaces
-│ ├───Implementations
-│ └───Migrations
-│
-├───HousingEstateControlSystem.Common
-│ └───ResponseDto.cs
-│
-└───HousingEstateControlSystem.DTOs
-├───User
-├───Bill
-├───Dues
-├───Payment
-└───Condo
+# HousingEstateControlSystem
+
+- **HousingEstateControlSystem.API**
+  - **Controllers**
+    - UserController.cs
+    - CondoController.cs
+    - DuesController.cs
+    - BillController.cs
+    - AuthController.cs
+    - PaymentController.cs
+  - **Filters**
+    - NotFoundActionFilter.cs
+  - **Middlewares**
+    - ExceptionMiddleware.cs
+  - Program.cs
+  - appsettings.json
+
+- **HousingEstateControlSystem.Services**
+  - **Interfaces**
+    - IUserService.cs
+    - ICondoService.cs
+    - IDuesService.cs
+    - IBillService.cs
+    - IPaymentService.cs
+  - **Implementations**
+    - UserService.cs
+    - CondoService.cs
+    - DuesService.cs
+    - BillService.cs
+    - PaymentService.cs
+  - **Mappers**
+    - UserMapper.cs
+    - CondoMapper.cs
+    - DuesMapper.cs
+    - BillMapper.cs
+    - PaymentMapper.cs
+
+- **HousingEstateControlSystem.Repositories**
+  - **Models**
+    - User.cs
+    - Condo.cs
+    - Dues.cs
+    - Bill.cs
+    - Role.cs
+    - Payment.cs
+  - **Interfaces**
+    - IUserRepository.cs
+    - ICondoRepository.cs
+    - IDuesRepository.cs
+    - IBillRepository.cs
+    - IPaymentRepository.cs
+  - **Implementations**
+    - UserRepository.cs
+    - CondoRepository.cs
+    - DuesRepository.cs
+    - BillRepository.cs
+    - PaymentRepository.cs
+  - **Migrations**
+  - DatabaseContext.cs
+
+- **HousingEstateControlSystem.Common**
+  - ResponseDto.cs
+
+- **HousingEstateControlSystem.DTOs**
+  - **User**
+    - UserDTO.cs
+    - UserAddDtoRequest.cs
+    - UserUpdateRequest.cs
+  - **Bill**
+    - BillDTO.cs
+    - BillAddDtoRequest.cs
+    - BillUpdateRequest.cs
+  - **Dues**
+    - DuesDTO.cs
+    - DuesAddDtoRequest.cs
+    - DuesUpdateRequest.cs
+  - **Payment**
+    - PaymentDTO.cs
+    - PaymentAddDtoRequest.cs
+    - PaymentUpdateRequest.cs
+  - **Condo**
+    - CondoDTO.cs
+    - CondoAddDtoRequest.cs
+    - CondoUpdateRequest.cs
+  - **Login**
+    - LoginDTO.cs
 
 
 ## Nasıl Çalıştırılır?
@@ -53,15 +110,3 @@ HousingEstateControlSystem
 - MS SQL Server
 - RESTful API
 - JWT Authentication
-
-## Katkıda Bulunma
-
-1. Bu repoyu forklayın.
-2. Yeni bir branch oluşturun: `git checkout -b yeni-özellik`
-3. Yaptığınız değişiklikleri commitleyin: `git commit -am 'Yeni özellik eklendi'`
-4. Branch'i pushlayın: `git push origin yeni-özellik`
-5. Pull request (PR) oluşturun.
-
-## Lisans
-
-Bu proje MIT lisansı altında lisanslanmıştır. Daha fazla bilgi için `LICENSE` dosyasına bakın.
