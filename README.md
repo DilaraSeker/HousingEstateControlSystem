@@ -100,7 +100,7 @@ Bu projede, .NET 8 ve EF Core kullanılarak bir RESTful API geliştirilmiştir. 
 
 1. Proje klonlanır.
 2. `HousingEstateControlSystem.API` klasörüne gidilir ve `dotnet run` komutu ile projenin çalıştırılması sağlanır.
-3. API, varsayılan olarak `https://localhost:5001` adresinde çalışır.
+3. API, varsayılan olarak `https://localhost:7144` adresinde çalışır.
 4. Postman veya benzer bir araç kullanarak API endpoint'lerine istekler gönderilebilir.
 
 ## Kullanılan Teknolojiler
