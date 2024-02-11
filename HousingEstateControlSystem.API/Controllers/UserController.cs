@@ -18,17 +18,8 @@ namespace HousingEstateControlSystem.API.Controllers
         [HttpGet]
         public IActionResult GetAllUsers()
         {
-            try
-            {
-                var response = _userService.GetAllUsers();
-                return StatusCode(response.StatusCode, response);
-            }
-            catch (Exception ex)
-            {
-                // Log the exception
-                Console.WriteLine($"Error in GetAllUsers: {ex.Message}");
-                return StatusCode(500, $"Internal server error: {ex.Message}");
-            }
+            var response = _userService.GetAllUsers();
+            return StatusCode(response.StatusCode, response);
         }
 
         [HttpGet("{userId}")]
@@ -41,15 +32,8 @@ namespace HousingEstateControlSystem.API.Controllers
         [HttpPost]
         public IActionResult AddUser(UserAddDtoRequest user)
         {
-            try
-            {
-                var response = _userService.AddUser(user);
-                return StatusCode(response.StatusCode, response);
-            }
-            catch (Exception ex)
-            {
-                return StatusCode(500, $"Internal server error: {ex.Message}");
-            }
+            var response = _userService.AddUser(user);
+            return StatusCode(response.StatusCode, response);
         }
 
         [HttpPut("{userId}")]

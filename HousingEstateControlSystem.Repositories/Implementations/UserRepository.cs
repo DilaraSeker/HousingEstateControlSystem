@@ -1,6 +1,4 @@
-﻿using System.Collections.Generic;
-using System.Linq;
-using HousingEstateControlSystem.Repositories.Interfaces;
+﻿using HousingEstateControlSystem.Repositories.Interfaces;
 using HousingEstateControlSystem.Repositories.Models;
 
 namespace HousingEstateControlSystem.Repositories.Implementations
@@ -13,7 +11,6 @@ namespace HousingEstateControlSystem.Repositories.Implementations
         {
             _context = context;
         }
-
         public User GetUserById(int userId)
         {
             return _context.Users.FirstOrDefault(u => u.UserId == userId);

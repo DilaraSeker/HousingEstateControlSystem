@@ -1,3 +1,6 @@
+using Microsoft.AspNetCore.Builder;
+using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Hosting;
 using Microsoft.EntityFrameworkCore;
 using HousingEstateControlSystem.API.Middlewares;
 using HousingEstateControlSystem.Services.Interfaces;
@@ -7,8 +10,6 @@ using HousingEstateControlSystem.Services;
 using HousingEstateControlSystem.API.Filters;
 using HousingEstateControlSystem.Repositories.Implementations;
 using HousingEstateControlSystem.Repositories.Interfaces;
-using System.Globalization;
-using HousingEstateControlSystem.Services.Mappers;
 
 var builder = Host.CreateDefaultBuilder(args);
 
@@ -19,7 +20,7 @@ builder.ConfigureWebHostDefaults(webBuilder =>
         // Add DbContext
         services.AddDbContext<DatabaseContext>(options =>
         {
-            options.UseSqlServer(context.Configuration.GetConnectionString("SqlServer"));
+            options.UseSqlServer(context.Configuration.GetConnectionString("DefaultConnection"));
         });
 
         // Add scoped services
@@ -31,7 +32,6 @@ builder.ConfigureWebHostDefaults(webBuilder =>
         services.AddScoped<IUserService, UserService>();
         services.AddScoped<ICondoService, CondoService>();
         services.AddScoped<IBillService, BillService>();
-
         // Add controllers
         services.AddControllers(options =>
         {
@@ -43,10 +43,6 @@ builder.ConfigureWebHostDefaults(webBuilder =>
 
         // Add AutoMapper
         services.AddAutoMapper(typeof(Program));
-        services.AddAutoMapper(typeof(UserMapper));
-        services.AddAutoMapper(typeof(CondoMapper));
-        services.AddAutoMapper(typeof(DuesMapper));
-        services.AddAutoMapper(typeof(BillMapper));
     });
 
     webBuilder.Configure(app =>
@@ -70,8 +66,4 @@ builder.ConfigureWebHostDefaults(webBuilder =>
     });
 });
 
-// Globalizasyon
-var cultureInfo = CultureInfo.InvariantCulture;
-CultureInfo.DefaultThreadCurrentCulture = cultureInfo;
-CultureInfo.DefaultThreadCurrentUICulture = cultureInfo;
 builder.Build().Run();
