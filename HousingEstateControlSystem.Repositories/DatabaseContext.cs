@@ -7,6 +7,7 @@ namespace HousingEstateControlSystem.Repositories
     public class DatabaseContext : IdentityDbContext<User>
     {
         public DbSet<Condo> Condos { get; set; }
+        public DbSet<Payment> Payments { get; set; }
         public DbSet<Dues> Dues { get; set; }
         public DbSet<Bill> Bills { get; set; }
 
