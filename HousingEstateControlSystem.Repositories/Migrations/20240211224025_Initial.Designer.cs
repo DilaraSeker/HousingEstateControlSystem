@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace HousingEstateControlSystem.Repositories.Migrations
 {
     [DbContext(typeof(DatabaseContext))]
-    [Migration("20240211200737_updated")]
-    partial class updated
+    [Migration("20240211224025_Initial")]
+    partial class Initial
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
