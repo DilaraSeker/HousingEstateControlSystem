@@ -12,62 +12,62 @@ Bu projede, .NET 8 ve EF Core kullanılarak bir RESTful API geliştirilmiştir. 
 
 - **HousingEstateControlSystem.API**
   - **Controllers**
-    - UserController.cs
+    - AuthController.cs
+    - BillController.cs
     - CondoController.cs
     - DuesController.cs
-    - BillController.cs
-    - AuthController.cs
     - PaymentController.cs
+    - UserController.cs
   - **Filters**
     - NotFoundActionFilter.cs
   - **Middlewares**
     - ExceptionMiddleware.cs
+    - LoggingMiddleware.cs
   - Program.cs
   - appsettings.json
 
 - **HousingEstateControlSystem.Services**
   - **Interfaces**
-    - IUserService.cs
-    - ICondoService.cs
-    - IDuesService.cs
-    - IBillService.cs
-    - IPaymentService.cs
     - IAuthService
+    - IBillService
+    - ICondoService
+    - IDuesService
+    - IPaymentService
+    - IUserService
   - **Implementations**
-    - UserService.cs
+    - AuthService.cs
+    - BillService.cs
     - CondoService.cs
     - DuesService.cs
-    - BillService.cs
     - PaymentService.cs
-    - AuthService.cs
+    - UserService.cs
   - **Mappers**
-    - UserMapper.cs
+    - AuthMapper.cs
+    - BillMapper.cs
     - CondoMapper.cs
     - DuesMapper.cs
-    - BillMapper.cs
     - PaymentMapper.cs
-    - AuthMapper.cs
-
+    - UserMapper.cs
 - **HousingEstateControlSystem.Repositories**
   - **Models**
-    - User.cs
+    - Bill.cs
     - Condo.cs
     - Dues.cs
-    - Bill.cs
-    - Role.cs
     - Payment.cs
+    - Role.cs
+    - User.cs
   - **Interfaces**
-    - IUserRepository.cs
+    - IBillRepository.cs
     - ICondoRepository.cs
     - IDuesRepository.cs
-    - IBillRepository.cs
     - IPaymentRepository.cs
+    - IUserRepository.cs
   - **Implementations**
-    - UserRepository.cs
+    - BillRepository.cs
     - CondoRepository.cs
     - DuesRepository.cs
-    - BillRepository.cs
     - PaymentRepository.cs
+    - UserRepository.cs
   - **Migrations**
   - DatabaseContext.cs
 
@@ -75,33 +75,32 @@ Bu projede, .NET 8 ve EF Core kullanılarak bir RESTful API geliştirilmiştir. 
   - ResponseDto.cs
 
 - **HousingEstateControlSystem.DTOs**
-  - **User**
-    - UserDTO.cs
-    - UserAddDtoRequest.cs
-    - UserUpdateRequest.cs
+  - **Auth**
+    - AuthDTO.cs
+    - AuthResponseDTO.cs
   - **Bill**
     - BillDTO.cs
     - BillAddDtoRequest.cs
     - BillUpdateRequest.cs
-  - **Dues**
-    - DuesDTO.cs
-    - DuesAddDtoRequest.cs
-    - DuesUpdateRequest.cs
-  - **Payment**
-    - PaymentDTO.cs
-    - PaymentAddDtoRequest.cs
-    - PaymentUpdateRequest.cs
   - **Condo**
     - CondoDTO.cs
     - CondoAddDtoRequest.cs
     - CondoUpdateRequest.cs
+  - **Dues**
+    - DuesDTO.cs
+    - DuesAddDtoRequest.cs
+    - DuesUpdateRequest.cs
   - **Login**
     - LoginDTO.cs
-  - **Auth**
-    - AuthDTO.cs
-    - AuthResponseDTO.cs  
-
-
+  - **Payment**
+    - PaymentDTO.cs
+    - PaymentAddDtoRequest.cs
+    - PaymentUpdateRequest.cs
+  - **User**
+    - UserDTO.cs
+    - UserAddDtoRequest.cs
+    - UserUpdateRequest.cs
+  
 ## Nasıl Çalıştırılır?
 
 1. Proje klonlanır.
