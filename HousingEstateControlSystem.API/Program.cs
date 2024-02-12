@@ -1,6 +1,3 @@
-using Microsoft.AspNetCore.Builder;
-using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Hosting;
 using Microsoft.EntityFrameworkCore;
 using HousingEstateControlSystem.API.Middlewares;
 using HousingEstateControlSystem.Services.Interfaces;
@@ -15,6 +12,7 @@ using HousingEstateControlSystem.Services.Mappers;
 using HousingEstateControlSystem.Repositories.Models;
 using Microsoft.AspNetCore.Identity;
 
+
 var builder = Host.CreateDefaultBuilder(args);
 
 builder.ConfigureWebHostDefaults(webBuilder =>
@@ -24,7 +22,7 @@ builder.ConfigureWebHostDefaults(webBuilder =>
         // Add DbContext
         services.AddDbContext<DatabaseContext>(options =>
         {
-            options.UseSqlServer(context.Configuration.GetConnectionString("DefaultConnection"));
+            options.UseSqlServer(context.Configuration.GetConnectionString("SqlServer"));
         });
 
         // Add scoped services
@@ -36,6 +34,16 @@ builder.ConfigureWebHostDefaults(webBuilder =>
         services.AddScoped<IUserService, UserService>();
         services.AddScoped<ICondoService, CondoService>();
         services.AddScoped<IBillService, BillService>();
+        services.AddScoped<IUserRoleRepository, UserRoleRepository>();
+        services.AddScoped<IAuthService, AuthService>();
+
+        // Identity
+        services.AddIdentity<User, IdentityRole>()
+            .AddEntityFrameworkStores<DatabaseContext>()
+            .AddDefaultTokenProviders();
+
+        // AuthService
+        services.AddScoped<IAuthService, AuthService>();
 
         // Add controllers
         services.AddControllers(options =>
@@ -52,6 +60,7 @@ builder.ConfigureWebHostDefaults(webBuilder =>
         services.AddAutoMapper(typeof(CondoMapper));
         services.AddAutoMapper(typeof(DuesMapper));
         services.AddAutoMapper(typeof(BillMapper));
+        services.AddAutoMapper(typeof(PaymentMapper));
     });
 
     webBuilder.Configure(app =>
@@ -72,7 +81,15 @@ builder.ConfigureWebHostDefaults(webBuilder =>
         {
             c.SwaggerEndpoint("/swagger/v1/swagger.json", "HousingEstateControlSystem API V1");
         });
+
+        // Logging middleware
+        app.UseMiddleware<LoggingMiddleware>();
     });
 });
+
+// Globalizasyon
+var cultureInfo = CultureInfo.InvariantCulture;
+CultureInfo.DefaultThreadCurrentCulture = cultureInfo;
+CultureInfo.DefaultThreadCurrentUICulture = cultureInfo;
 
 builder.Build().Run();
