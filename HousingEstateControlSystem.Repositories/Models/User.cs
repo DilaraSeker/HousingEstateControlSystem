@@ -14,5 +14,6 @@ namespace HousingEstateControlSystem.Repositories.Models
         public int? CondoId { get; set; } // Can be Nullable 
         public Condo? Condo { get; set; } // User may have a Condo
         public ICollection<Payment>? Payments { get; set; }
+        public List<UserRole> UserRoles { get; set; }
     }
 }

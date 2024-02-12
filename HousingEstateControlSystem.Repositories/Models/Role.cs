@@ -1,6 +1,6 @@
 ﻿namespace HousingEstateControlSystem.Repositories.Models
 {
-    public enum Role
+    public enum Role 
     {
         Admin,
         Resident,
