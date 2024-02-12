@@ -34,7 +34,11 @@ namespace HousingEstateControlSystem.API.Filters
 
         public void OnActionExecuted(ActionExecutedContext context)
         {
-            // Eylem tamamlandıktan sonra yapılacak işlemler
+            var result = context.Result as ObjectResult;
+            if (result?.Value == null && (result?.StatusCode == 200 || result?.StatusCode == 204))
+            {
+                context.Result = new NotFoundResult();
+            }
         }
     }
 }
