@@ -1,14 +1,63 @@
 # Housing Estate Control System
 
-Bu proje, bir apartman sitesinin aidat ve ortak kullanım faturalarının yönetimini sağlayan bir sistemdir. 
+This project is a system for managing dues and common usage bills of an apartment complex.
 
-## Proje Tanımı
+## Project Description
 
-Bu projede, .NET 8 ve EF Core kullanılarak bir RESTful API geliştirilmiştir. Proje, apartman site yöneticileri ve daire sahipleri/kiracıları için ayrı ayrı işlevselliğe sahiptir. Yönetici, dairelerin aidat ve fatura bilgilerini girerken, daire sahipleri/kiracıları kendi ödemelerini yapabilirler. Proje, MS SQL Server veritabanı üzerinde çalışmaktadır.
+In this project, a RESTful API is developed using .NET 8 and EF Core. The project provides functionality for both apartment site managers and apartment owners/tenants. The manager can enter dues and bill information for the units, while owners/tenants can make their payments. The project runs on MS SQL Server.
 
-## Dosya Yapısı
+## Layers
 
-# HousingEstateControlSystem
+### 1. HousingEstateControlSystem.API
+
+**Controllers:** API requests handling components reside in this folder.
+- **AuthController.cs:** Handles requests related to authentication and authorization.
+- **BillController.cs:** Processes requests for bill operations.
+- **CondoController.cs:** Processes requests for condo operations.
+- **DuesController.cs:** Processes requests for dues operations.
+- **PaymentController.cs:** Processes requests for payment operations.
+- **UserController.cs:** Processes requests for user operations.
+
+**Filters:** Contains filters that perform necessary checks during processing.
+- **NotFoundActionFilter.cs:** Handles requests made to resources that cannot be found.
+
+**Middlewares:** Contains middleware components for processing requests and responses.
+- **ExceptionMiddleware.cs:** Handles exceptions within the application.
+- **LoggingMiddleware.cs:** Handles logging of requests and responses.
+
+**Program.cs:** Entry point of the application.
+
+**appsettings.json:** Configuration file containing application settings.
+
+### 2. HousingEstateControlSystem.Services
+
+**Interfaces:** Contains interfaces defining the methods of services.
+**Implementations:** Contains application classes that implement the business logic of services.
+**Mappers:** Contains mapper classes that facilitate transformation between data transfer objects (DTOs) and data models.
+
+### 3. HousingEstateControlSystem.Repositories
+
+**Models:** Contains model classes for database structures.
+**Interfaces:** Contains interfaces defining methods for database operations.
+**Implementations:** Contains application classes that perform database operations.
+**Migrations:** Contains code managing and applying changes to the database structure.
+
+### 4. HousingEstateControlSystem.Common
+
+Contains common components used across the application.
+- **ResponseDto.cs:** Defines the structure of response data transfer objects (DTOs).
+
+### 5. HousingEstateControlSystem.DTOs
+
+Contains data transfer objects (DTOs) used for communication between layers.
+- **Auth:** DTOs related to authentication.
+- **Bill:** DTOs related to bill operations.
+- **Condo:** DTOs related to condo operations.
+- **Dues:** DTOs related to dues operations.
+- **Login:** DTOs related to login operations.
+- **Payment:** DTOs related to payment operations.
+- **User:** DTOs related to user operations.
+## File Structure
 
 - **HousingEstateControlSystem.API**
   - **Controllers**
@@ -101,14 +150,14 @@ Bu projede, .NET 8 ve EF Core kullanılarak bir RESTful API geliştirilmiştir. 
     - UserAddDtoRequest.cs
     - UserUpdateRequest.cs
   
-## Nasıl Çalıştırılır?
+## How to Run?
 
-1. Proje klonlanır.
-2. `HousingEstateControlSystem.API` klasörüne gidilir ve `dotnet run` komutu ile projenin çalıştırılması sağlanır.
-3. API, varsayılan olarak `https://localhost:7144` adresinde çalışır.
-4. Postman veya benzer bir araç kullanarak API endpoint'lerine istekler gönderilebilir.
+1. Clone the project.
+2. Navigate to the `HousingEstateControlSystem.API` folder and run the project using the `dotnet run` command.
+3. The API runs by default at `https://localhost:7144`.
+4. Requests can be sent to the API endpoints using Postman or a similar tool.
 
-## Kullanılan Teknolojiler
+## Technologies Used
 
 - .NET 8
 - Entity Framework Core
